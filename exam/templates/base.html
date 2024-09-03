@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}시험 관리 시스템{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .navbar {
+            background-color: white;
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* 구분선 추가 */
+
+        }
+        .navbar a {
+            color: #000000; /* 흰색 글자 */
+            padding: 10px 20px; /* 버튼 박스 */
+            text-decoration: none;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            color: #ffffff; /* 호버 시 색상 변경 */
+            background-color: #555; /* 호버 시 색상 변경 */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('main.index') }}">홈</a>
+        <a href="{{ url_for('exam.exam_list') }}">시험 목록</a>
+        <a href="{{ url_for('exam.exam_pivot') }}">성적 피벗 테이블</a>
+        <a href="{{ url_for('scores.score_list') }}">성적 관리</a>
+        <a href="{{ url_for('students.student_list') }}">학생 관리</a>
+        <a href="{{ url_for('subjects.subject_list') }}">과목 관리</a>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

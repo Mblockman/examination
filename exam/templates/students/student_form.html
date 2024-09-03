@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="form-title">{% if student %}학생 정보 수정{% else %}새 학생 추가{% endif %}</h1>
+<form method="post" class="form-container">
+    <div class="form-group">
+        <label for="name" class="form-label">이름:</label>
+        <input type="text" id="name" name="name" value="{{ student.name if student else '' }}" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="email" class="form-label">이메일:</label>
+        <input type="email" id="email" name="email" value="{{ student.email if student else '' }}" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="password" class="form-label">비밀번호:</label>
+        <input type="password" id="password" name="password" {% if not student %}required{% endif %} class="form-input">
+    </div>
+    <button type="submit" class="form-button">저장</button>
+</form>
+{% endblock %}

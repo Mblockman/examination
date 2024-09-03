@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}시험 관리 시스템{% endblock %}
+
+{% block content %}
+
+<h1>학생 목록</h1>
+<a href="{{ url_for('students.student_create') }}" class="btn btn-insert">새 학생 추가</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>학생 ID</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>작업</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for student in students %}
+        <tr>
+            <td>{{ student.user_id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>
+                <a href="{{ url_for('students.student_update', user_id=student.user_id) }}" class="btn btn-modify">수정</a>
+                <a href="{{ url_for('students.student_delete', user_id=student.user_id) }}" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

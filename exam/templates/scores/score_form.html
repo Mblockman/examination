@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="form-title">{% if score %}성적 수정{% else %}새 성적 추가{% endif %}</h1>
+<form method="post" class="form-container">
+    <div class="form-group">
+        <label for="subject_id" class="form-label">과목:</label>
+        <select id="subject_id" name="subject_id" required class="form-input">
+            {% for subject in subjects %}
+            <option value="{{ subject.subject_id }}" {% if score and score.subject_id == subject.subject_id %}selected{% endif %}>
+                {{ subject.subjects }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="user_id" class="form-label">학생:</label>
+        <select id="user_id" name="user_id" required class="form-input">
+            {% for user in users %}
+            <option value="{{ user.user_id }}" {% if score and score.user_id == user.user_id %}selected{% endif %}>
+                {{ user.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="score" class="form-label">점수:</label>
+        <input type="number" id="score" name="score" step="0.01" value="{{ score.score if score else '' }}" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="exam_date" class="form-label">시험 날짜:</label>
+        <input type="datetime-local" id="exam_date" name="exam_date" value="{{ score.exam_date.strftime('%Y-%m-%dT%H:%M') if score else '' }}" required class="form-input">
+    </div>
+    <button type="submit" class="form-button">저장</button>
+</form>
+{% endblock %}

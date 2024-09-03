@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}시험 관리 시스템{% endblock %}
+
+{% block content %}
+
+
+<h1>개인별 시험 성적</h1>
+<table>
+    <thead>
+        <tr>
+            <th>학생 이름</th>
+            {% for subject in subjects %}
+            <th>{{ subject.subjects }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in pivot_data %}
+        <tr>
+            <td>{{ row.name }}</td>
+            {% for subject in subjects %}
+            <td>{{ row[subject.subjects] if row[subject.subjects] else '-' }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

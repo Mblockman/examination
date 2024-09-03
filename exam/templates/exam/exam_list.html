@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}시험 관리 시스템{% endblock %}
+
+{% block content %}
+
+
+<h1>시험 목록</h1>
+<table>
+    <thead>
+        <tr>
+            <th>시험 ID</th>
+            <th>과목</th>
+            <th>학생 이름</th>
+            <th>점수</th>
+            <th>시험 날짜</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for exam in exam_list %}
+        <tr>
+            <td>{{ exam.exam_id }}</td>
+            <td>{{ exam.subjects }}</td>
+            <td>{{ exam.name }}</td>
+            <td>{{ exam.score }}</td>
+            <td>{{ exam.exam_date.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
